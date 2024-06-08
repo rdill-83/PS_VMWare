@@ -1,7 +1,6 @@
 # ESXI Process - VMHost IP Address Update / Change 
 
-# This Live Example walkthrough specifically addresses assignment via DHCP Reservation 
-# Static Method Also Available but not covered in this document
+# Full Process for Updating an ESXI Host whose IP Address Needs to be changed via DHCP Reservation
 
 # ReAssign DHCP Reservation:
 # Assumes in PSSession / Remoted into DHCP Server:
@@ -30,13 +29,10 @@ systemctl restart dnsmasq.service
 # View VCSA DNS Service State:
 systemctl status dnsmasq.service
 
-
-
 # Add VMHost to vSphere:
 $esxUser = "<insert-actual>"
 $esxPW = "<insert-actual>"
 $Location = (Get-DataCenter DATACENTER).Name
-# $Location = (Get-DataCenter <DataCenter>).Name
 
 Add-VMHost -Name $newName -Location $Location  -User $esxUser -Password $esxPW -Force -Confirm:$false 
 
